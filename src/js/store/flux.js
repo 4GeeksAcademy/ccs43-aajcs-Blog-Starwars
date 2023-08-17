@@ -13,6 +13,16 @@ const getState = ({ getStore, getActions, setStore }) => {
           background: "white",
           initial: "white",
         },
+        {
+          title: "SECOND",
+          background: "white",
+          initial: "white",
+        },
+        {
+          title: "SECOND",
+          background: "white",
+          initial: "white",
+        },
       ],
       people: [],
       peoples: [],
@@ -20,13 +30,14 @@ const getState = ({ getStore, getActions, setStore }) => {
       planet: [],
       vehicles: [],
       vehicle: [],
+      favoritos: [],
     },
     actions: {
       // Use getActions to call a function within a fuction
       leerDatosPeoples: async () => {
         try {
           const store = getStore();
-          console.log(store);
+
           const requestConfig = {
             method: "GET",
             headers: {
@@ -37,9 +48,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
           const body = await response.json();
           if (body.message === "ok") {
-            console.log(body.results);
             body.results?.map(async (e) => {
-              console.log(e.url);
               const response = await fetch(e.url, requestConfig);
 
               const body = await response.json();
@@ -48,7 +57,6 @@ const getState = ({ getStore, getActions, setStore }) => {
           }
 
           setStore({ people: body.results });
-          console.log(store);
         } catch (error) {
           console.log(error);
         }
@@ -59,13 +67,11 @@ const getState = ({ getStore, getActions, setStore }) => {
           const response = await fetch(`${store.API_URL}/people`);
           if (response.ok) {
             const data = await response.json();
-            console.log(data.results);
             data.results.forEach(async (element) => {
               let responseElement = await fetch(
                 `${store.API_URL}/people/${element.uid}`
               );
               let dataItem = await responseElement.json();
-              console.log(dataItem);
               // setStore({ characters: [...store.characters, dataItem.result] });
             });
           }
@@ -76,7 +82,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       leerDatosPlanets: async () => {
         try {
           const store = getStore();
-          console.log(store);
+
           const requestConfig = {
             method: "GET",
             headers: {
@@ -87,9 +93,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
           const body = await response.json();
           if (body.message === "ok") {
-            console.log(body.results);
             body.results?.map(async (e) => {
-              console.log(e.url);
               const response = await fetch(e.url, requestConfig);
 
               const body = await response.json();
@@ -98,7 +102,6 @@ const getState = ({ getStore, getActions, setStore }) => {
           }
 
           setStore({ planet: body.results });
-          console.log(store);
         } catch (error) {
           console.log(error);
         }
@@ -106,7 +109,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       leerDatosVehicles: async () => {
         try {
           const store = getStore();
-          console.log(store);
+
           const requestConfig = {
             method: "GET",
             headers: {
@@ -117,9 +120,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
           const body = await response.json();
           if (body.message === "ok") {
-            console.log(body.results);
             body.results?.map(async (e) => {
-              console.log(e.url);
               const response = await fetch(e.url, requestConfig);
 
               const body = await response.json();
@@ -128,10 +129,28 @@ const getState = ({ getStore, getActions, setStore }) => {
           }
 
           setStore({ vehicle: body.results });
-          console.log(store);
         } catch (error) {
           console.log(error);
         }
+      },
+      setFavoritos: (tipo, valor) => {
+        const store = getStore();
+        const arrayFavorito = { ...valor, categoria: tipo };
+        console.log(arrayFavorito);
+        const verificarFavoritoExistente = store.favoritos.includes(valor.name);
+        console.log(verificarFavoritoExistente);
+        if (!verificarFavoritoExistente) {
+          setStore({
+            favoritos: [...store.favoritos, valor.name],
+          });
+          console.log(store.favoritos);
+        }
+      },
+      deleteFavorito: (index) => {
+        const store = getStore();
+        const updatedFavorites = [...store.favoritos];
+        updatedFavorites.splice(index, 1);
+        setStore({ favoritos: updatedFavorites });
       },
       exampleFunction: () => {
         getActions().changeColor(0, "green");

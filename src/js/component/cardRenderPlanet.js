@@ -1,9 +1,13 @@
 import React, { Component, useContext } from "react";
 
 import { Context } from "../store/appContext";
+import { Link } from "react-router-dom";
 
 export const CardRenderPlanets = ({ planet }) => {
   const { store, actions } = useContext(Context);
+  const isFavorito = store.favoritos.some(
+    (favorito) => favorito === planet.name
+  );
 
   return (
     <div className=" mx-1" style={{ width: "300px" }}>
@@ -14,6 +18,11 @@ export const CardRenderPlanets = ({ planet }) => {
               <div className="card" style={{ width: "18rem" }}>
                 <img
                   src={`https://starwars-visualguide.com/assets/img/planets/${planet.uid}.jpg`}
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src =
+                      "https://starwars-visualguide.com/assets/img/placeholder.jpg";
+                  }}
                   className="card-img-top"
                   style={{
                     height: "200px",
@@ -31,29 +40,26 @@ export const CardRenderPlanets = ({ planet }) => {
                 </div>
                 <ul className="list-group list-group-flush">
                   <li className="list-group-item">
-                    gender: {e.properties.gender}
+                    terrain: {e.properties.terrain}
                   </li>
                   <li className="list-group-item">
-                    hair_color: {e.properties.hair_color}
-                  </li>
-                  <li className="list-group-item">
-                    eye_color: {e.properties.eye_color}
+                    population : {e.properties.population}
                   </li>
                 </ul>
                 <div className="card-body d-flex justify-content-between">
-                  <button
-                    className="btn btn-outline-primary "
-                    // onClick={() => handleDetails(char.result.uid)}
-                  >
-                    Details
-                  </button>
-
+                  <Link to={`/planet/${planet.uid}`}>
+                    <button className="btn btn-outline-primary ">
+                      Detalle
+                    </button>
+                  </Link>
                   <button
                     href="#"
-                    className="btn btn-outline-warning "
-                    // onClick={() => {
-                    //   actions.setFavoritesCharacters(char);
-                    // }}
+                    className={`btn ${
+                      isFavorito ? "btn-warning" : "btn-outline-warning"
+                    } `}
+                    onClick={() => {
+                      actions.setFavoritos("planet", planet);
+                    }}
                   >
                     <strong>♥</strong>
                   </button>

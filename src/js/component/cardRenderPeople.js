@@ -1,9 +1,14 @@
-import React, { Component, useContext } from "react";
+import React, { useContext } from "react";
 
 import { Context } from "../store/appContext";
+import { Link } from "react-router-dom";
 
 export const CardRenderPeople = ({ people }) => {
   const { store, actions } = useContext(Context);
+
+  const isFavorito = store.favoritos.some(
+    (favorito) => favorito === people.name
+  );
 
   return (
     <div className=" mx-1" style={{ width: "300px" }}>
@@ -14,6 +19,11 @@ export const CardRenderPeople = ({ people }) => {
               <div className="card" style={{ width: "18rem" }}>
                 <img
                   src={`https://starwars-visualguide.com/assets/img/characters/${people.uid}.jpg`}
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src =
+                      "https://starwars-visualguide.com/assets/img/placeholder.jpg";
+                  }}
                   className="card-img-top"
                   style={{
                     height: "200px",
@@ -41,19 +51,22 @@ export const CardRenderPeople = ({ people }) => {
                   </li>
                 </ul>
                 <div className="card-body d-flex justify-content-between">
-                  <button
+                  <Link
+                    to={`/people/${people.uid}`}
+                    type="button"
                     className="btn btn-outline-primary "
-                    // onClick={() => handleDetails(char.result.uid)}
                   >
-                    Details
-                  </button>
+                    Detalles
+                  </Link>
 
                   <button
                     href="#"
-                    className="btn btn-outline-warning "
-                    // onClick={() => {
-                    //   actions.setFavoritesCharacters(char);
-                    // }}
+                    className={`btn ${
+                      isFavorito ? "btn-warning" : "btn-outline-warning"
+                    } `}
+                    onClick={() => {
+                      actions.setFavoritos("people", people);
+                    }}
                   >
                     <strong>♥</strong>
                   </button>
