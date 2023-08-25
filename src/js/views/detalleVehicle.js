@@ -48,23 +48,23 @@ export const DetalleVehicle = () => {
       <hr id="detail-line" />
       <div className="d-flex justify-content-around text text-danger">
         <p>
-          <span class="fw-bolder">Name</span>
+          <span className="fw-bolder">Name</span>
           <br /> {vehicles?.properties.name}
         </p>
         <p>
-          <span class="fw-bolder">Manufacturer</span> <br />
+          <span className="fw-bolder">Manufacturer</span> <br />
           {vehicles?.properties.manufacturer}
         </p>
         <p>
-          <span class="fw-bolder">Passengers</span> <br />
+          <span className="fw-bolder">Passengers</span> <br />
           {vehicles?.properties.passengers}
         </p>
         <p>
-          <span class="fw-bolder">Max atmosphering speed</span> <br />
+          <span className="fw-bolder">Max atmosphering speed</span> <br />
           {vehicles?.properties.max_atmosphering_speed}
         </p>
         <p>
-          <span class="fw-bolder">Consumables</span> <br />
+          <span className="fw-bolder">Consumables</span> <br />
           {vehicles?.properties.consumables}
         </p>
       </div>

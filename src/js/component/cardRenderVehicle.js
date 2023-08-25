@@ -12,9 +12,9 @@ export const CardRenderVehicles = ({ vehicle }) => {
   return (
     <div className=" mx-1" style={{ width: "300px" }}>
       {store.vehicles.map(
-        (e) =>
+        (e,index) =>
           e.uid === vehicle.uid && (
-            <div>
+            <div key={index}>
               <div className="card" style={{ width: "18rem" }}>
                 <img
                   src={`https://starwars-visualguide.com/assets/img/vehicles/${vehicle.uid}.jpg`}

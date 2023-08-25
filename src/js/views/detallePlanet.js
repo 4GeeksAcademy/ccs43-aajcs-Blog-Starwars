@@ -53,23 +53,23 @@ export const DetallePlanet = () => {
       <hr id="detail-line" />
       <div className="d-flex justify-content-around text text-danger">
         <p>
-          <span class="fw-bolder">Name</span>
+          <span className="fw-bolder">Name</span>
           <br /> {planets?.properties.name}
         </p>
         <p>
-          <span class="fw-bolder">Diameter</span> <br />{" "}
+          <span className="fw-bolder">Diameter</span> <br />{" "}
           {planets?.properties.diameter}
         </p>
         <p>
-          <span class="fw-bolder">Climate</span> <br />{" "}
+          <span className="fw-bolder">Climate</span> <br />{" "}
           {planets?.properties.climate}
         </p>
         <p>
-          <span class="fw-bolder">Surface Water</span> <br />{" "}
+          <span className="fw-bolder">Surface Water</span> <br />{" "}
           {planets?.properties.surface_water}
         </p>
         <p>
-          <span class="fw-bolder">Gravity</span> <br />{" "}
+          <span className="fw-bolder">Gravity</span> <br />{" "}
           {planets?.properties.gravity}
         </p>
       </div>

@@ -21,9 +21,9 @@ export const Home = () => {
             </div>
             <div className="card-body d-flex">
               {store.people.map((item, index) => (
-                <div className="">
+               
                   <CardRenderPeople key={index} people={item} />
-                </div>
+                
               ))}
             </div>
           </div>
@@ -37,9 +37,9 @@ export const Home = () => {
             </div>
             <div className="card-body d-flex">
               {store.planet.map((item, index) => (
-                <div className="">
+               
                   <CardRenderPlanets key={index} planet={item} />
-                </div>
+               
               ))}
             </div>
           </div>
@@ -53,9 +53,9 @@ export const Home = () => {
             </div>
             <div className="card-body d-flex">
               {store.vehicle.map((item, index) => (
-                <div className="">
+                
                   <CardRenderVehicles key={index} vehicle={item} />
-                </div>
+                
               ))}
             </div>
           </div>

@@ -14,7 +14,7 @@ export const Navbar = () => {
         ></img>
       </Link>
       <div className="ml-auto">
-        <Link to="/demo">
+       
           <div className="dropdown">
             <button
               className="btn btn-primary dropdown-toggle "
@@ -26,24 +26,28 @@ export const Navbar = () => {
               Favorites ({store.favoritos.length})
             </button>
             <ul className="dropdown-menu dropdown-menu-end dropdown-menu-start">
-              {store.favoritos.map((item, index) => (
-                <li id="" key={index}>
-                  <div className="d-flex justify-content-between">
-                    {item}
-                    <a
-                      className="trash-icon"
-                      onClick={(e) => {
-                        actions.deleteFavorito(index);
-                      }}
-                    >
-                      <i className="fas fa-trash"></i>
-                    </a>
-                  </div>
-                </li>
-              ))}
+              {store.favoritos.length !== 0 ? (
+                store.favoritos.map((item, index) => (
+                  <li id="" key={index}>
+                    <div className="d-flex justify-content-between">
+                      {item}
+                      <a
+                        className="trash-icon"
+                        onClick={(e) => {
+                          actions.deleteFavorito(index);
+                        }}
+                      >
+                        <i className="fas fa-trash"></i>
+                      </a>
+                    </div>
+                  </li>
+                ))
+              ) : (
+                <li id="">No tiene Favorito</li>
+              )}
             </ul>
           </div>
-        </Link>
+     
       </div>
     </nav>
   );

@@ -53,27 +53,27 @@ export const DetallePeople = () => {
       <hr className="text-danger my-4 fw-bolder" size="5" />
       <div className="d-flex justify-content-around text text-danger">
         <p>
-          <span class="fw-bolder">Name</span>
+          <span className="fw-bolder">Name</span>
           <br /> {peoples.properties.name}
         </p>
         <p>
-          <span class="fw-bolder">Birth year</span> <br />{" "}
+          <span className="fw-bolder">Birth year</span> <br />{" "}
           {peoples.properties.birth_year}
         </p>
         <p>
-          <span class="fw-bolder">Gender</span> <br />{" "}
+          <span className="fw-bolder">Gender</span> <br />{" "}
           {peoples.properties.gender}
         </p>
         <p>
-          <span class="fw-bolder">Height</span> <br />{" "}
+          <span className="fw-bolder">Height</span> <br />{" "}
           {peoples.properties.height}
         </p>
         <p>
-          <span class="fw-bolder">Skin color</span> <br />{" "}
+          <span className="fw-bolder">Skin color</span> <br />{" "}
           {peoples.properties.skin_color}
         </p>
         <p>
-          <span class="fw-bolder">Eye color</span> <br />{" "}
+          <span className="fw-bolder">Eye color</span> <br />{" "}
           {peoples.properties.eye_color}
         </p>
       </div>

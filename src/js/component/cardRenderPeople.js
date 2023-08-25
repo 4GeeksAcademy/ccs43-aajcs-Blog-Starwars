@@ -13,9 +13,9 @@ export const CardRenderPeople = ({ people }) => {
   return (
     <div className=" mx-1" style={{ width: "300px" }}>
       {store.peoples.map(
-        (e) =>
+        (e,index) =>
           e.uid === people.uid && (
-            <div>
+            <div key={index}>
               <div className="card" style={{ width: "18rem" }}>
                 <img
                   src={`https://starwars-visualguide.com/assets/img/characters/${people.uid}.jpg`}
